@@ -145,8 +145,7 @@ def ForceNewTorIdentity(config):
     try:
         tor_c = socket.create_connection(('127.0.0.1', config.Tor_control_port))
         tor_c.send('AUTHENTICATE "{}"\r\nSIGNAL NEWNYM\r\n'.format(config.Tor_control_password).encode())
-        response = tor_c.recv(1024)
-        if response != b'250 OK\r\n250 OK\r\n':
+        if (response := tor_c.recv(1024)) != b'250 OK\r\n250 OK\r\n':
             sys.stderr.write('Unexpected response from Tor control port: {}\n'.format(response))
             logme.critical(__name__ + ':ForceNewTorIdentity:unexpectedResponse')
     except Exception as e:

@@ -60,8 +60,7 @@ class Token:
     def refresh(self):
         logme.debug('Retrieving guest token')
         res = self._request()
-        match = re.search(r'\("gt=(\d+);', res.text)
-        if match:
+        if match := re.search(r'\("gt=(\d+);', res.text):
             logme.debug('Found guest token in HTML')
             self.config.Guest_token = str(match.group(1))
         else:

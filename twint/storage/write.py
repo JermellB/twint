@@ -47,8 +47,7 @@ def createDirIfMissing(dirname):
         os.makedirs(dirname)
 
 def Csv(obj, config):
-    _obj_type = obj.__class__.__name__
-    if _obj_type == "str":
+    if (_obj_type := obj.__class__.__name__) == "str":
         _obj_type = "username"
     fieldnames, row = struct(obj, config.Custom[_obj_type], _obj_type)
     
@@ -65,8 +64,7 @@ def Csv(obj, config):
         writer.writerow(row)
 
 def Json(obj, config):
-    _obj_type = obj.__class__.__name__
-    if _obj_type == "str":
+    if (_obj_type := obj.__class__.__name__) == "str":
         _obj_type = "username"
     null, data = struct(obj, config.Custom[_obj_type], _obj_type)
 

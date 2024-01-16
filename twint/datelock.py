@@ -13,8 +13,7 @@ class Datelock:
 
 def convertToDateTime(string):
     dateTimeList = string.split()
-    ListLength = len(dateTimeList)
-    if ListLength == 2:
+    if (ListLength := len(dateTimeList)) == 2:
         return string
     if ListLength == 1:
         return string + " 00:00:00"
