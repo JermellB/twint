@@ -105,7 +105,7 @@ def _output(obj, output, config, **extra):
                 write.Csv(obj, config)
                 logme.debug(__name__ + ':_output:CSV')
             except Exception as e:
-                logme.critical(__name__ + ':_output:CSV:Error:' + str(e))
+                logme.critical("%s:_output:CSV:Error:%s", __name__, str(e))
                 print(str(e) + " [x] output._output")
         elif config.Store_json:
             write.Json(obj, config)

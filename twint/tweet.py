@@ -161,6 +161,6 @@ def Tweet(tw, config):
             t.trans_dest = ts.dest
         # ref. https://github.com/SuniTheFish/ChainTranslator/blob/master/ChainTranslator/__main__.py#L31
         except ValueError as e:
-            logme.debug(__name__ + ':Tweet:translator.translate:' + str(e))
+            logme.debug("%s:Tweet:translator.translate:%s", __name__, str(e))
             raise Exception("Invalid destination language: {} / Tweet: {}".format(config.TranslateDest, t.tweet))
     return t

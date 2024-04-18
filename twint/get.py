@@ -203,7 +203,7 @@ async def Tweet(url, config, conn):
         tweets = soup.find_all("div", "tweet")
         await Tweets(tweets, config, conn, url)
     except Exception as e:
-        logme.critical(__name__ + ':Tweet:' + str(e))
+        logme.critical("%s:Tweet:%s", __name__, str(e))
 
 
 async def User(username, config, conn, user_id=False):
@@ -223,11 +223,11 @@ async def User(username, config, conn, user_id=False):
                 _id = j_r['data']['user']['rest_id']
                 return _id
             except KeyError as e:
-                logme.critical(__name__ + ':User:' + str(e))
+                logme.critical("%s:User:%s", __name__, str(e))
                 return
         await Users(j_r, config, conn)
     except Exception as e:
-        logme.critical(__name__ + ':User:' + str(e))
+        logme.critical("%s:User:%s", __name__, str(e))
         raise
 
 

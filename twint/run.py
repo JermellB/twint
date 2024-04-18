@@ -61,7 +61,7 @@ class Twint:
             try:
                 response = await get.RequestUrl(self.config, self.init)
             except TokenExpiryException as e:
-                logme.debug(__name__ + 'Twint:Feed:' + str(e))
+                logme.debug("%sTwint:Feed:%s", __name__, str(e))
                 self.token.refresh()
                 response = await get.RequestUrl(self.config, self.init)
 
@@ -93,7 +93,7 @@ class Twint:
                     try:
                         self.feed, self.init = feed.parse_tweets(self.config, response)
                     except NoMoreTweetsException as e:
-                        logme.debug(__name__ + ':Twint:Feed:' + str(e))
+                        logme.debug("%s:Twint:Feed:%s", __name__, str(e))
                         print('[!] ' + str(e) + ' Scraping will stop now.')
                         print('found {} deleted tweets in this search.'.format(len(self.config.deleted)))
                         break
@@ -112,7 +112,7 @@ class Twint:
                         get.ForceNewTorIdentity(self.config)
                         continue
                 else:
-                    logme.critical(__name__ + ':Twint:Feed:' + str(e))
+                    logme.critical("%s:Twint:Feed:%s", __name__, str(e))
                     print(str(e))
                     break
             except Exception as e:
@@ -120,7 +120,7 @@ class Twint:
                     print("[!] Twitter does not return more data, scrape stops here.")
                     break
 
-                logme.critical(__name__ + ':Twint:Feed:noData' + str(e))
+                logme.critical("%s:Twint:Feed:noData%s", __name__, str(e))
                 # Sometimes Twitter says there is no data. But it's a lie.
                 # raise
                 consecutive_errors_count += 1
@@ -136,7 +136,7 @@ class Twint:
                     time.sleep(delay)
                     self.user_agent = await get.RandomUserAgent(wa=True)
                     continue
-                logme.critical(__name__ + ':Twint:Feed:Tweets_known_error:' + str(e))
+                logme.critical("%s:Twint:Feed:Tweets_known_error:%s", __name__, str(e))
                 sys.stderr.write(str(e) + " [x] run.Feed")
                 sys.stderr.write(
                     "[!] if you get this error but you know for sure that more tweets exist, please open an issue and "

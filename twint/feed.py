@@ -37,7 +37,7 @@ def Mobile(response):
     try:
         max_id = findall(r'max_id=(.*?)">', str(max_id))[0]
     except Exception as e:
-        logme.critical(__name__ + ':Mobile:' + str(e))
+        logme.critical("%s:Mobile:%s", __name__, str(e))
 
     return tweets, max_id
 
