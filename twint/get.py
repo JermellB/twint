@@ -7,7 +7,6 @@ import aiohttp
 from fake_useragent import UserAgent
 import asyncio
 import concurrent.futures
-import random
 from json import loads, dumps
 from aiohttp_socks import ProxyConnector, ProxyType
 from urllib.parse import quote
@@ -17,6 +16,7 @@ from .output import Tweets, Users
 from .token import TokenExpiryException
 
 import logging as logme
+import secrets
 
 httpproxy = None
 
@@ -178,7 +178,7 @@ async def RandomUserAgent(wa=None):
             return "Mozilla/5.0 (Windows NT 6.4; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2225.0 Safari/537.36"
         return UserAgent(verify_ssl=False, use_cache_server=False).random
     except:
-        return random.choice(user_agent_list)
+        return secrets.choice(user_agent_list)
 
 
 async def Username(_id, bearer_token, guest_token):
